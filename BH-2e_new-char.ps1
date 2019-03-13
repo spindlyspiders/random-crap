@@ -22,7 +22,7 @@ function Get-DiceRoll {
 
     end {}
 
-    } # end >> function Get-DiceRoll
+    }
 
 function Get-NewStatArray {
     $A = Get-DiceRoll -Dice "2d6"
@@ -81,10 +81,10 @@ function build-warrior {
 
     switch ( Get-DiceRoll -Dice '1d6' ) {
         1 { $inv += "    Scalp of an enemy chieftain`n" }
-        2 { $inv += "    Vial of widow’s tears`n"       }
-        3 { $inv += "    My lord’s sundered shield`n"   }
+        2 { $inv += "    Vial of widowâ€™s tears`n"       }
+        3 { $inv += "    My lordâ€™s sundered shield`n"   }
         4 { $inv += "    Ears from a goblin tribe`n"    }
-        5 { $inv += "    An enemy’s heraldric banner`n" }
+        5 { $inv += "    An enemyâ€™s heraldric banner`n" }
         6 { $inv += "    A dragon-tooth pendant`n"      }
     }
 
@@ -210,7 +210,7 @@ function build-wizard(){
            $inv += "    Cloth robes (AV1)`n" +
                    "    Bent oak staff`n" +
                    "    Short sword`n" +
-                   "    A void creature’s egg`n" +
+                   "    A void creatureâ€™s egg`n" +
                    '    ' + (Get-DiceRoll -Dice '2d8') + " coins`n"
           }
         2 {
