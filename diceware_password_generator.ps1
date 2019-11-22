@@ -1,11 +1,15 @@
 ﻿<#
 This wordlist is taked from EFF's long wordlist.
 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
-The list has been modified slightly in two ways.
+The list has been modified slightly.
 1.) The words have been capitalized.
-2.) "Yellow" was substituted for "Yo-yo".
+2.) "Drop" was substituted for "Drop-down".
+3.) "Felt" was substituted for "Felt-tip".
+4.) "Tableau" was substituted for "T-shirt".
+5.) "Yellow" was substituted for "Yo-yo".
 #>
-$wordlist = @{'11111'='Abacus';
+$wordlist = @{
+'11111'='Abacus';
 '11112'='Abdomen';
 '11113'='Abdominal';
 '11114'='Abide';
@@ -2013,7 +2017,7 @@ $wordlist = @{'11111'='Abacus';
 '24252'='Drone';
 '24253'='Drool';
 '24254'='Droop';
-'24255'='Drop-down';
+'24255'='Drop';
 '24256'='Dropbox';
 '24261'='Dropkick';
 '24262'='Droplet';
@@ -2532,7 +2536,7 @@ $wordlist = @{'11111'='Abacus';
 '26515'='Feel';
 '26516'='Feisty';
 '26521'='Feline';
-'26522'='Felt-tip';
+'26522'='Felt';
 '26523'='Feminine';
 '26524'='Feminism';
 '26525'='Feminist';
@@ -6644,9 +6648,9 @@ $wordlist = @{'11111'='Abacus';
 '61531'='Synthetic';
 '61532'='Syrup';
 '61533'='System';
-'61534'='T-shirt';
-'61535'='Tabasco';
-'61536'='Tabby';
+'61534'='Tabasco';
+'61535'='Tabby';
+'61536'='Tableau';
 '61541'='Tableful';
 '61542'='Tables';
 '61543'='Tablet';
