@@ -8023,7 +8023,9 @@ do {
   }
 
   #remove the trailing delimiter at the end of a password
-  $pass = $pass.Remove($pass.length-$delim.length)
+  if ($delim.length -gt 0) {
+    $pass = $pass.Remove($pass.length-$delim.length)
+  }
 
   #add a line break to delimit passwords
   $pass += "`n"
