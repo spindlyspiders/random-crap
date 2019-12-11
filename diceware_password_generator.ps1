@@ -8043,4 +8043,4 @@ do {
     } else { $answer_ok = $true }
 } while (-not $answer_ok)
 
-if($writefile.tolower() -in 'y','n','yes','no'){$pass | out-file diceware_passwords.txt}
+if($writefile.tolower() -in 'y','yes'){$pass | out-file diceware_passwords.txt}
