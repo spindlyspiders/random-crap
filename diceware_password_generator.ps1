@@ -7788,25 +7788,20 @@ $wordlist = @{
 }
 
 function show-dice {
-[CmdletBinding ()]
-    Param([
-            Parameter (
-                Position = 0,
-                Mandatory
-            )
-        ]
-        [string]
-        $roll
-    )
-    Param([
-            Parameter (
-                Position = 1,
-                Mandatory
-            )
-        ]
-        [string]
-        $word
-    )
+
+
+
+    Param(
+ 
+        [parameter(position=0,mandatory=$true)]
+        [string]$roll,
+        [parameter(position=1,mandatory=$true)]
+        [string]$word
+ 
+        )
+
+
+
     begin {}
     process {
 
@@ -7907,7 +7902,9 @@ $dicebanner = @()
       $dicebanner
     }
 
+
     end {}
+
 
 }
 
@@ -8015,7 +8012,7 @@ do {
   }
 
   #add a line break to delimit passwords
-  $pass += "`n"
+  $pass += "`r`n"
 }
 
 
@@ -8023,9 +8020,9 @@ do {
 #or display a plural banner if there is more than one password
 if ($numpass -eq 1) {
   ''
-  $pass = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`n|G|e|n|e|r|a|t|e|d| |P|a|s|s|w|o|r|d|`n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`n" + $pass
+  $pass = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`r`n|G|e|n|e|r|a|t|e|d| |P|a|s|s|w|o|r|d|`r`n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`r`n" + $pass
 } else {
-  $pass = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`n|G|e|n|e|r|a|t|e|d| |P|a|s|s|w|o|r|d|s|`n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`n" + $pass
+  $pass = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`r`n|G|e|n|e|r|a|t|e|d| |P|a|s|s|w|o|r|d|s|`r`n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+`r`n" + $pass
 }
 
 #show the generated passwords to the user
@@ -8035,7 +8032,9 @@ $pass
 do {
     $answer_ok = $true
     try {
-      [string]$wtitefile = read-host 'Do you want to write these passwords to file (y/n)?  This may be a security risk.'
+
+      [string]$writefile = read-host 'Do you want to write these passwords to file (y/n)?  This may be a security risk.'
+
     } catch { $answer_ok = $false }
     if ((-not $answer_ok) -or ($writefile.tolower() -notin 'y','n','yes','no')){
       'Enter "yes" or "no".'
@@ -8044,3 +8043,4 @@ do {
 } while (-not $answer_ok)
 
 if($writefile.tolower() -in 'y','yes'){$pass | out-file diceware_passwords.txt}
+
