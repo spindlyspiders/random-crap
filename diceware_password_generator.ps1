@@ -1,5 +1,5 @@
 ﻿<#
-This wordlist is taked from EFF's long wordlist.
+This wordlist is taken from EFF's long wordlist.
 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 The list has been modified slightly.
 1.) The words have been capitalized.
@@ -7787,217 +7787,107 @@ $wordlist = @{
 '66666'='Zoom';
 }
 
+function show-dice {
+[CmdletBinding ()]
+    Param([
+            Parameter (
+                Position = 0,
+                Mandatory
+            )
+        ]
+        [string]
+        $roll
+    )
+    Param([
+            Parameter (
+                Position = 1,
+                Mandatory
+            )
+        ]
+        [string]
+        $word
+    )
+    begin {}
+    process {
+
 
 #Here is the dice art
+#numbers with multiple orientations have two arts
 $die61=' _______ ',
        '/       \',
-       '| ●   ● |',
-       '| ●   ● |',
-       '| ●   ● |',
+       '| O   O |',
+       '| O   O |',
+       '| O   O |',
        '\_______/'
 
 $die62=' _______ ',
        '/       \',
-       '| ● ● ● |',
+       '| O O O |',
        '|       |',
-       '| ● ● ● |',
+       '| O O O |',
        '\_______/'
 
 $die5=' _______ ',
       '/       \',
-      '| ●   ● |',
-      '|   ●   |',
-      '| ●   ● |',
+      '| O   O |',
+      '|   O   |',
+      '| O   O |',
       '\_______/'
 
 $die4=' _______ ',
       '/       \',
-      '| ●   ● |',
+      '| O   O |',
       '|       |',
-      '| ●   ● |',
+      '| O   O |',
       '\_______/'
 
 $die31=' _______ ',
        '/       \',
-       '|     ● |',
-       '|   ●   |',
-       '| ●     |',
+       '|     O |',
+       '|   O   |',
+       '| O     |',
        '\_______/'
 
 $die32=' _______ ',
        '/       \',
-       '| ●     |',
-       '|   ●   |',
-       '|     ● |',
+       '| O     |',
+       '|   O   |',
+       '|     O |',
        '\_______/'
 
 $die21=' _______ ',
        '/       \',
-       '|     ● |',
+       '|     O |',
        '|       |',
-       '| ●     |',
+       '| O     |',
        '\_______/'
 
 $die22=' _______ ',
        '/       \',
-       '| ●     |',
+       '| O     |',
        '|       |',
-       '|     ● |',
+       '|     O |',
        '\_______/'
 
 $die1=' _______ ',
       '/       \',
       '|       |',
-      '|   ●   |',
+      '|   O   |',
       '|       |',
       '\_______/'
 
 
+$dicebanner = @()
 
-cls
-
-
-#This is the title banner, and it's perfect. Don't touch it.
-'
-██████╗ ██╗ ██████╗███████╗██╗    ██╗ █████╗ ██████╗ ███████╗                
-██╔══██╗██║██╔════╝██╔════╝██║    ██║██╔══██╗██╔══██╗██╔════╝                
-██║  ██║██║██║     █████╗  ██║ █╗ ██║███████║██████╔╝█████╗                  
-██║  ██║██║██║     ██╔══╝  ██║███╗██║██╔══██║██╔══██╗██╔══╝                  
-██████╔╝██║╚██████╗███████╗╚███╔███╔╝██║  ██║██║  ██║███████╗                
-╚═════╝ ╚═╝ ╚═════╝╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝                
-                                                                             
-██████╗  █████╗ ███████╗███████╗██╗    ██╗ ██████╗ ██████╗ ██████╗           
-██╔══██╗██╔══██╗██╔════╝██╔════╝██║    ██║██╔═══██╗██╔══██╗██╔══██╗          
-██████╔╝███████║███████╗███████╗██║ █╗ ██║██║   ██║██████╔╝██║  ██║          
-██╔═══╝ ██╔══██║╚════██║╚════██║██║███╗██║██║   ██║██╔══██╗██║  ██║          
-██║     ██║  ██║███████║███████║╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝          
-╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝           
-                                                                             
- ██████╗ ███████╗███╗   ██╗███████╗██████╗  █████╗ ████████╗ ██████╗ ██████╗ 
-██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
-██║  ███╗█████╗  ██╔██╗ ██║█████╗  ██████╔╝███████║   ██║   ██║   ██║██████╔╝
-██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ██╔══██╗██╔══██║   ██║   ██║   ██║██╔══██╗
-╚██████╔╝███████╗██║ ╚████║███████╗██║  ██║██║  ██║   ██║   ╚██████╔╝██║  ██║
- ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝'
-
-<# This is a backup title banner in case you touched the first one.
-'
-██████╗ ██╗ ██████╗███████╗██╗    ██╗ █████╗ ██████╗ ███████╗                
-██╔══██╗██║██╔════╝██╔════╝██║    ██║██╔══██╗██╔══██╗██╔════╝                
-██║  ██║██║██║     █████╗  ██║ █╗ ██║███████║██████╔╝█████╗                  
-██║  ██║██║██║     ██╔══╝  ██║███╗██║██╔══██║██╔══██╗██╔══╝                  
-██████╔╝██║╚██████╗███████╗╚███╔███╔╝██║  ██║██║  ██║███████╗                
-╚═════╝ ╚═╝ ╚═════╝╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝                
-                                                                             
-██████╗  █████╗ ███████╗███████╗██╗    ██╗ ██████╗ ██████╗ ██████╗           
-██╔══██╗██╔══██╗██╔════╝██╔════╝██║    ██║██╔═══██╗██╔══██╗██╔══██╗          
-██████╔╝███████║███████╗███████╗██║ █╗ ██║██║   ██║██████╔╝██║  ██║          
-██╔═══╝ ██╔══██║╚════██║╚════██║██║███╗██║██║   ██║██╔══██╗██║  ██║          
-██║     ██║  ██║███████║███████║╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝          
-╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝           
-                                                                             
- ██████╗ ███████╗███╗   ██╗███████╗██████╗  █████╗ ████████╗ ██████╗ ██████╗ 
-██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
-██║  ███╗█████╗  ██╔██╗ ██║█████╗  ██████╔╝███████║   ██║   ██║   ██║██████╔╝
-██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ██╔══██╗██╔══██║   ██║   ██║   ██║██╔══██╗
-╚██████╔╝███████╗██║ ╚████║███████╗██║  ██║██║  ██║   ██║   ╚██████╔╝██║  ██║
- ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝'
-#>
-
-
-#Here, we ask the user how long they want their passwords
-#and check that they entered an integer value
-do {
-    $num_ok = $true
-    try {
-      [int]$length = read-host 'How many words do you want in your password?  The recommended minimum is six.'
-    } catch { $num_ok = $false }
-    if ((-not $num_ok) -or ($length -lt 2)){
-      'Enter an integer greater than 1.'
-    }
-} while ((-not $num_ok) -or ($length -lt 2))
-
-
-#Here, we ask the user what delimiter they want
-[string]$delim = read-host 'What delimiter do you want between words?'
-
-
-#Here, we ask the user how many passwords they want
-#and check that they entered an integer value
-do {
-    $num_ok = $true
-    try {
-      [int]$numpass = read-host 'How many passwords do you want?'
-    } catch { $num_ok = $false }
-    if ((-not $num_ok) -or ($numpass -lt 1)){
-      'Enter an integer greater than 0.'
-    }
-} while ((-not $num_ok) -or ($numpass -lt 1))
-
-
-#clear the title banner out of the way
- cls
-
-
- #initialize a variable to hold the generated passwords
-[string]$pass=''
-
-
-#loop through the number of desired passords
-(1..$numpass) | foreach {
-  $chosenwords = @()
-
-  #loop through the number of words for each password
-  (1..$length) | foreach  {
-
-    #here we get the die rolls to pick a random word
-    #it has to be a string for reasons
-    [string]$roll = '' +(get-random -minimum 1 -maximum 7) +
-                        (get-random -minimum 1 -maximum 7) +
-                        (get-random -minimum 1 -maximum 7) +
-                        (get-random -minimum 1 -maximum 7) +
-                        (get-random -minimum 1 -maximum 7) 
-
-
-    #get the word from the word list
-    $word = $wordlist.$roll
-    $word = $word.tolower()
-    #$word = $word.toupper()
-    $chosenwords += $word
-
-
-    #if the user asked for just one password
-    #display some dice art for each die roll
-    if ($numpass -eq 1) {
-      $dicebanner = @()
-
-      #this is why the dice roll needed to be a string
+      
       $roll.GetEnumerator() | foreach {
         switch ($_) {
           1 {$die = $die1}
-          2 {
-            if ($true,$false|get-random) {
-              $die = $die21
-            } else {
-              $die = $die22
-            }
-          }
-          3 {
-            if ($true,$false|get-random) {
-              $die = $die31
-            } else {
-              $die = $die32
-            }
-          }
+          2 { if($true,$false|get-random){$die = $die21}else{$die = $die22} }
+          3 { if($true,$false|get-random){$die = $die31}else{$die = $die32} }
           4 {$die = $die4}
           5 {$die = $die5}
-          6 {
-            if ($true,$false|get-random) {
-              $die = $die61
-            } else {
-              $die = $die62
-            }
-          }
+          6 { if($true,$false|get-random){$die = $die61}else{$die = $die62} }
         }
   
         #add the die art to the dice banner
@@ -8010,14 +7900,111 @@ do {
   
       }
 
-      #add the selected word to the dice banner
+      
       $dicebanner[4] =$dicebanner[4]+' '+$word
 
-      #display the dice banner to the user
+      
       $dicebanner
     }
 
-    #append the word to the passwords variable
+    end {}
+
+}
+
+
+cls
+
+
+#This is the title banner.
+'
+██████╗ ██╗ ██████╗███████╗██╗    ██╗ █████╗ ██████╗ ███████╗                
+██╔══██╗██║██╔════╝██╔════╝██║    ██║██╔══██╗██╔══██╗██╔════╝                
+██║  ██║██║██║     █████╗  ██║ █╗ ██║███████║██████╔╝█████╗                  
+██║  ██║██║██║     ██╔══╝  ██║███╗██║██╔══██║██╔══██╗██╔══╝                  
+██████╔╝██║╚██████╗███████╗╚███╔███╔╝██║  ██║██║  ██║███████╗                
+╚═════╝ ╚═╝ ╚═════╝╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝                
+                                                                             
+██████╗  █████╗ ███████╗███████╗██╗    ██╗ ██████╗ ██████╗ ██████╗           
+██╔══██╗██╔══██╗██╔════╝██╔════╝██║    ██║██╔═══██╗██╔══██╗██╔══██╗          
+██████╔╝███████║███████╗███████╗██║ █╗ ██║██║   ██║██████╔╝██║  ██║          
+██╔═══╝ ██╔══██║╚════██║╚════██║██║███╗██║██║   ██║██╔══██╗██║  ██║          
+██║     ██║  ██║███████║███████║╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝          
+╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝           
+                                                                             
+ ██████╗ ███████╗███╗   ██╗███████╗██████╗  █████╗ ████████╗ ██████╗ ██████╗ 
+██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+██║  ███╗█████╗  ██╔██╗ ██║█████╗  ██████╔╝███████║   ██║   ██║   ██║██████╔╝
+██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ██╔══██╗██╔══██║   ██║   ██║   ██║██╔══██╗
+╚██████╔╝███████╗██║ ╚████║███████╗██║  ██║██║  ██║   ██║   ╚██████╔╝██║  ██║
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+ '
+
+
+#Here, we ask the user for some inputs
+do {
+    $num_ok = $true
+    try {
+      [int]$length = read-host 'How many words do you want in your password?  The recommended minimum is six.'
+    } catch { $num_ok = $false }
+    if ((-not $num_ok) -or ($length -lt 2)){
+      'Enter an integer greater than 1.'
+    }
+} while ((-not $num_ok) -or ($length -lt 2))
+
+[string]$delim = read-host 'What delimiter do you want between words?'
+
+do {
+    $num_ok = $true
+    try {
+      [int]$numpass = read-host 'How many passwords do you want?'
+    } catch { $num_ok = $false }
+    if ((-not $num_ok) -or ($numpass -lt 1)){
+      'Enter an integer greater than 0.'
+    }
+} while ((-not $num_ok) -or ($numpass -lt 1))
+
+
+
+ cls
+
+
+
+
+
+
+#generating passwords
+
+[string]$pass=''
+
+
+(1..$numpass) | foreach {
+
+  
+  (1..$length) | foreach  {
+
+    
+    [string]$roll = '' +(get-random -minimum 1 -maximum 7) +
+                        (get-random -minimum 1 -maximum 7) +
+                        (get-random -minimum 1 -maximum 7) +
+                        (get-random -minimum 1 -maximum 7) +
+                        (get-random -minimum 1 -maximum 7) 
+
+
+    
+    $word = $wordlist.$roll
+    $word = $word.tolower()
+    #$word = $word.toupper()
+
+
+    #if the user asked for just one password,
+    #we candisplay some dice art for each die
+    #roll.  This would be obnoxious for more
+    #than one password
+    if ($numpass -eq 1) {
+      show-dice $roll $word
+    }
+
+    
     $pass += $word + $delim
 
   }
