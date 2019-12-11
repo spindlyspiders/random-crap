@@ -7790,6 +7790,7 @@ $wordlist = @{
 function show-dice {
 
 
+
     Param(
  
         [parameter(position=0,mandatory=$true)]
@@ -7798,6 +7799,7 @@ function show-dice {
         [string]$word
  
         )
+
 
 
     begin {}
@@ -7900,7 +7902,9 @@ $dicebanner = @()
       $dicebanner
     }
 
+
     end {}
+
 
 }
 
@@ -8028,7 +8032,9 @@ $pass
 do {
     $answer_ok = $true
     try {
+
       [string]$writefile = read-host 'Do you want to write these passwords to file (y/n)?  This may be a security risk.'
+
     } catch { $answer_ok = $false }
     if ((-not $answer_ok) -or ($writefile.tolower() -notin 'y','n','yes','no')){
       'Enter "yes" or "no".'
@@ -8037,5 +8043,4 @@ do {
 } while (-not $answer_ok)
 
 if($writefile.tolower() -in 'y','yes'){$pass | out-file diceware_passwords.txt}
-
 
