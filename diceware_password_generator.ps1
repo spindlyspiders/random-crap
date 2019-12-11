@@ -8031,6 +8031,16 @@ if ($numpass -eq 1) {
 #show the generated passwords to the user
 $pass
 
-#this makes the host wait for the user to
-#press enter before closing the session
-read-host
+
+do {
+    $answer_ok = $true
+    try {
+      [string]$wtitefile = read-host 'Do you want to write these passwords to file (y/n)?  This may be a security risk.'
+    } catch { $answer_ok = $false }
+    if ((-not $answer_ok) -or ($writefile.tolower() -notin 'y','n','yes','no')){
+      'Enter "yes" or "no".'
+      $answer_ok = $false
+    } else { $answer_ok = $true }
+} while (-not $answer_ok)
+
+if($writefile.tolower() -in 'y','n','yes','no'){$pass | out-file diceware_passwords.txt}
